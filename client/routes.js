@@ -8,12 +8,18 @@ import authedRoute from './lib/authedRoute';
 import App from './App';
 import Blog from './Blog';
 import Profile from './Profile';
+import About from './About';
 import NotFound from './NotFound';
 
 export default store => (
   <Route path='/' component={App}>
     { /* Unauthed routes */ }
     <IndexRoute component={Blog}/>
+
+    <Route
+      path='about'
+      component={About}
+    />
 
     { /* Routes requiring login */ }
     <Route onEnter={authedRoute(store)}>
