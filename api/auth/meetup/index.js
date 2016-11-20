@@ -4,7 +4,7 @@
 
 // passport
 import passport from 'passport';
-import {OAuth2Strategy as MeetupStrategy} from 'passport-oauth2-meetup';
+import {OAuth2Strategy as MeetupStrategy} from 'passport-meetup';
 
 // utilities
 import _ from 'lodash';
@@ -40,7 +40,7 @@ const verifyCallback = (accessToken, refreshToken, profile, done) =>
   .then(user =>
     done(null, user))
   .catch(err =>
-    !console.error('Error creating user from Google authentication', err) && done(err, null));
+    !console.error('Error creating user from Meetup authentication', err) && done(err, null));
 
 passport.use(new MeetupStrategy(meetupCredentials, verifyCallback));
 

@@ -78,7 +78,7 @@
     "passport-facebook": "^2.1.1",
     "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
-    "passport-oauth2-meetup": "^1.1.0",
+    "passport-meetup": "^1.0.0",
     "piping": "^1.0.0-rc.4",
     "postcss-nested": "^1.0.0",
     "pretty-error": "^2.0.2",
