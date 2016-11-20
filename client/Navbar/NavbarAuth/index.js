@@ -1,5 +1,6 @@
 // Component here uses ES6 destructuring syntax in import, what is means is "retrieve the property 'Component' off of the object exported from the 'react'"
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { get } from 'lodash';
@@ -40,10 +41,6 @@ export default class NavAuth extends Component {
     dispatch: PropTypes.func.isRequired
   }
 
-  viewProfile = () => this.props.dispatch(push('/profile'))
-
-  viewBlog = () => this.props.dispatch(push('/'))
-
   logIn = () => {
     const email = get(this.refs, 'email.value');
     const password = get(this.refs, 'password.value');
@@ -74,21 +71,35 @@ export default class NavAuth extends Component {
     const user = this.props.user;
     const loggedIn = !!get(user, 'email'); // if user has email property, they're logged in
     const authErrorMessage = get(user, 'authErrorMessage');
-    const viewingProfile = this.props.currentRoute === '/profile';
 
     return (
       <ul className="navbar-auth nav navbar-nav navbar-right">
+        <li className="nav-button">
+          <Link
+            className="profile-view-toggle"
+            to=""
+          >
+            BLOG
+          </Link>
+        </li>
+        <li className="nav-button">
+          <Link
+            className="profile-view-toggle"
+            to="about"
+          >
+            ABOUT
+          </Link>
+        </li>
         {
           loggedIn
           &&
           <li className="nav-button">
-            <a
+            <Link
               className="profile-view-toggle"
-              href="#"
-              onClick={!viewingProfile ? this.viewProfile : this.viewBlog}
+              to="profile"
             >
-              {`VIEW ${!viewingProfile ? 'PROFILE' : 'BLOG'}`}
-            </a>
+              PROFILE
+            </Link>
           </li>
         }
         <li
