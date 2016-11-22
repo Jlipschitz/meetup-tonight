@@ -4,7 +4,7 @@
 
 // passport
 import passport from 'passport';
-import {OAuth2Strategy as MeetupStrategy} from 'passport-meetup';
+import {Strategy as MeetupStrategy} from 'passport-meetup-oauth2';
 
 // utilities
 import _ from 'lodash';
@@ -17,14 +17,17 @@ const User = mongoose.model('User');
 const meetupCredentials = {
   clientID: process.env.MEETUP_CLIENT_ID,
   clientSecret: process.env.MEETUP_CLIENT_SECRET,
-  callbackURL: process.env.MEETUP_CLIENT_CALLBACK
+  requestTokenURL: 'https://api.meetup.com/oauth/request/?scope=messaging+ageless+profile_edit+basic',
+  callbackURL: process.env.MEETUP_CLIENT_CALLBACK,
+  autoGenerateUsername: true
 };
 
-const verifyCallback = (accessToken, refreshToken, profile, done) =>
-  User.findOne({
+const verifyCallback = function(accessToken, refreshToken, profile, done) {
+  console.log('This is the profile ---- ', JSON.stringify(profile));
+  return User.findOne({
     email: profile.emails[0].value
   })
-  .then(user =>
+  .then(user => console.log('found user', user) ||
     user && user.meetup._id ? Promise.resolve(user) : // no need to fill in info w/profile if user already has Google log-in
     _.merge(user || new User(), { // use Google profile to fill out user info if it does not already exist
       email: user && user.email || profile.emails[0].value,
@@ -36,20 +39,24 @@ const verifyCallback = (accessToken, refreshToken, profile, done) =>
         photo: profile._json.image && profile._json.image.url || profile._json.picture, // this object path seems to vary
         link: profile._json.url || profile._json.link // this object path seems to vary
       }
-    }).save())
+    }).save()
+  )
   .then(user =>
     done(null, user))
   .catch(err =>
-    !console.error('Error creating user from Meetup authentication', err) && done(err, null));
+    console.error('Error creating user from Meetup authentication', err) || done(err, null));
+}
 
 passport.use(new MeetupStrategy(meetupCredentials, verifyCallback));
 
-const passportAuth = passport.authenticate('meetup', {
-  scope: [
-    'https://www.meetupapis.com/auth/userinfo.profile',
-    'https://www.meetupapis.com/auth/userinfo.email'
-  ]
-});
+// const passportAuth = passport.authenticate('meetup');
+
+//, {
+  // scope: [
+  //   'https://www.googlea[com/auth/userinfo.profile',
+  //   'https://www.meetup.com/auth/userinfo.email'
+  // ]
+//}
 
 const passportAuthCb = passport.authenticate('meetup', {
   failureRedirect: '/',
@@ -58,10 +65,20 @@ const passportAuthCb = passport.authenticate('meetup', {
 
 const passportAuthCbCb = (req, res) => {
   setJwt(req, res);
+
   res.redirect('/');
 }
 
 export default api => {
-  api.get('/meetup', passportAuth);
-  api.get('/meetup/callback', passportAuthCb, passportAuthCbCb);
+  api.get('/meetup', passport.authenticate('meetup', {
+    failureRedirect: '/',
+    session: false
+  }), function(req, res){
+    // The request will be redirected to Meetup for authentication, so this
+    // function will not be called.
+  });
+  api.get('/meetup/callback', passport.authenticate('meetup', {
+    failureRedirect: '/',
+    session: false
+  }), passportAuthCbCb);
 };

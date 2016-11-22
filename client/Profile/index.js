@@ -28,6 +28,11 @@ export default class PostForm extends Component {
         _id: PropTypes.string.isRequired,
         photo: PropTypes.string.isRequired,
         link: PropTypes.string.isRequired
+      }),
+      meetup: PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        photo: PropTypes.string.isRequired,
+        link: PropTypes.string.isRequired
       })
     })
   }
@@ -63,6 +68,8 @@ export default class PostForm extends Component {
         {this.genField('google.link')}
         {this.genImage('facebook.photo')}
         {this.genField('facebook.link')}
+        {this.genImage('meetup.photo')}
+        {this.genField('meetup.link')}
       </ul>
     );
   }

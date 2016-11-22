@@ -35,6 +35,11 @@ export default class NavAuth extends Component {
         _id: PropTypes.string.isRequired,
         photo: PropTypes.string.isRequired,
         link: PropTypes.string.isRequired
+      }),
+      meetup: PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        photo: PropTypes.string.isRequired,
+        link: PropTypes.string.isRequired
       })
     }),
     dispatch: PropTypes.func.isRequired
@@ -120,6 +125,13 @@ export default class NavAuth extends Component {
                 &&
                 <a href="/auth/facebook">
                   <i className="fa fa-facebook o-auth-btn"/>
+                </a>
+              }
+              {
+                !get(user, 'meetup')
+                &&
+                <a href="/auth/meetup">
+                  <i className="fa fa-meetup o-auth-btn"/>
                 </a>
               }
               {
