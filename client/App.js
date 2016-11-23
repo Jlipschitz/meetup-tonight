@@ -1,39 +1,94 @@
 // Component here uses ES6 destructuring syntax in import, what is means is "retrieve the property 'Component' off of the object exported from the 'react'"
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import ReactDOM from 'react-dom'
+import Map from './components/Map'
+import Places from './components/Places'
+import superagent from 'superagent'
 
-// action creators
-import { initializationRequests } from './redux/actionCreators/initialize';
+class App extends Component {
+  state = {
+    location: {
+      lat: 40.75,
+      lng: -73.98
+    },
+    venues: []
+  }
 
-// other components
+
 import Navbar from './Navbar';
 import TempMeetupList from './TempMeetupList';
 
-// this will bring this CSS file into build
-import './App.css';
+  updateVenuesLocation = (location) => {
+    console.log('!!!!!!!!!!');
 
+    const url = `https://api.foursquare.com/v2/venues/search?v=20140806&ll=${location.lat},${location.lng}&client_id=CBROHXBO3ZY5CU4LY1VQZN3YIIEKY4QFPIUJINCWFG5NZ2ZV&client_secret=NX5CFQKTGVPGLJPDUU2IOSHVFB5NGRHXCRKJDLX2MJOBV3V5`
 
-@connect()
-export default class App extends Component {
-  static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    children: PropTypes.node,
+      superagent
+      .get(url)
+      .query(null)
+      .set('Accept', 'text/json')
+      .end((error, response) => {
+
+        let venues = response.body.response.venues
+        console.log('*********')
+        this.setState({
+          location: {
+            lat: location.lat,
+            lng: location.lng
+          },
+          venues: venues
+        })
+
+  })
+}
+
+  componentDidMount() {
+
+    window.navigator.geolocation.getCurrentPosition((position) => {
+
+      this.setState({ location: {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        }
+      })
+    });
+
+  let url = `https://api.foursquare.com/v2/venues/search?v=20140806&ll=${this.state.location.lat},${this.state.location.lng}&client_id=CBROHXBO3ZY5CU4LY1VQZN3YIIEKY4QFPIUJINCWFG5NZ2ZV&client_secret=NX5CFQKTGVPGLJPDUU2IOSHVFB5NGRHXCRKJDLX2MJOBV3V5`
+
+    superagent
+    .get(url)
+    .query(null)
+    .set('Accept', 'text/json')
+    .end((error, response) => {
+
+      let venues = response.body.response.venues
+      this.setState({
+        venues: venues
+      })
+
+    })
   }
 
-  state = {
-    posts: []
-  }
-
-  componentWillMount() {
-    this.props.dispatch(initializationRequests());
-  }
 
   render() {
+
+    console.log(this.state)
     return (
       <div>
-        <Navbar />
-        {this.props.children}
+        Meetup Tonight
+        <div style={{width:300, height:600, background:'red'}}>
+          <Map
+            center={this.state.location}
+            markers={this.state.venues}
+            on_Center_Changed={this.updateVenuesLocation}
+          />
+        </div>
+
+        <Places venues={this.state.venues}/>
       </div>
-    );
+    )
   }
 }
+
+ReactDOM.render(<App />, document.getElementById('app'))
