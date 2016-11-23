@@ -18,15 +18,15 @@ import {
 }))
 export default class PostList extends Component {
   static propTypes = {
-    posts: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      body: PropTypes.string.isRequired,
-      createdDate: PropTypes.string.isRequired,
-      email: PropTypes.string,
-      photo: PropTypes.string,
-      google_link: PropTypes.string,
-      facebook_link: PropTypes.string
-    })).isRequired,
+    // posts: PropTypes.arrayOf(PropTypes.shape({
+    //   title: PropTypes.string.isRequired,
+    //   body: PropTypes.string.isRequired,
+    //   createdDate: PropTypes.string.isRequired,
+    //   email: PropTypes.string,
+    //   photo: PropTypes.string,
+    //   google_link: PropTypes.string,
+    //   facebook_link: PropTypes.string
+    // })).isRequired,
     userEmail: PropTypes.string,
     dispatch: PropTypes.func.isRequired
   }
@@ -49,7 +49,7 @@ export default class PostList extends Component {
             <BlogPost
               post={post}
               index={index}
-              key={post._id}
+              key={post.id}
               delete={this.deletePost}
               edit={this.editPost}
               userEmail={this.props.userEmail}

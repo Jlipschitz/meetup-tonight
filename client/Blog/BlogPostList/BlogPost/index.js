@@ -13,13 +13,19 @@ export default class BlogPost extends Component {
     return (
       <li className="blog-post">
         <h3 className="blog-title">
-          {this.props.post.title}
+          {this.props.post.name}
         </h3>
         <p className="blog-body">
-          {this.props.post.body}
+          {this.props.post.description}
+        </p>
+        <p className="blog-body">
+          {this.props.post.link}
+        </p>
+        <p className="blog-body">
+          {!this.props.post.venue ? 'lat/lng: ' + this.props.post.group.lat + ', ' + this.props.post.group.lon : 'lat/lng: ' + this.props.post.venue.lat  + ', ' + this.props.post.venue.lon}
         </p>
         <p className="blog-created-date">
-          {prettyDate(this.props.post.createdDate)}
+          {prettyDate(this.props.post.time)}
         </p>
         {
           this.props.post.photo
