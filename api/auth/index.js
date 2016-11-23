@@ -5,10 +5,7 @@ import expressJwt from 'express-jwt';
 // handlers
 import facebookHandling from './facebook';
 import googleHandling from './google';
-<<<<<<< HEAD
 import meetupHandling from './meetup';
-=======
->>>>>>> 8119d0042709891509c1e388492f7d75453988a4
 import localHandling from './local';
 
 // models
@@ -59,10 +56,7 @@ export default api => {
   });
 
   // handlers for different types of authentication
-<<<<<<< HEAD
   meetupHandling(api);
-=======
->>>>>>> 8119d0042709891509c1e388492f7d75453988a4
   googleHandling(api);
   facebookHandling(api);
   localHandling(api);
