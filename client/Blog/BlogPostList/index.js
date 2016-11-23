@@ -9,11 +9,11 @@ import BlogPost from './BlogPost';
 import {
   editPost,
   deletePostRequest
-} from '../../redux/actionCreators/posts';
+} from '../../redux/actionCreators/events';
 
 
 @connect(store => ({
-  posts: store.posts,
+  posts: store.events,
   userEmail: store.user && store.user.email
 }))
 export default class PostList extends Component {
