@@ -1,9 +1,6 @@
 // Component here uses ES6 destructuring syntax in import, what is means is "retrieve the property 'Component' off of the object exported from the 'react'"
 import React, { Component, PropTypes } from 'react';
-<<<<<<< HEAD
-=======
 import { Link } from 'react-router';
->>>>>>> 8119d0042709891509c1e388492f7d75453988a4
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { get } from 'lodash';
@@ -39,26 +36,20 @@ export default class NavAuth extends Component {
         _id: PropTypes.string.isRequired,
         photo: PropTypes.string.isRequired,
         link: PropTypes.string.isRequired
-<<<<<<< HEAD
       }),
       meetup: PropTypes.shape({
         _id: PropTypes.string.isRequired,
         photo: PropTypes.string.isRequired,
         link: PropTypes.string.isRequired
-=======
->>>>>>> 8119d0042709891509c1e388492f7d75453988a4
       })
     }),
     dispatch: PropTypes.func.isRequired
   }
 
-<<<<<<< HEAD
   viewProfile = () => this.props.dispatch(push('/profile'))
 
   viewBlog = () => this.props.dispatch(push('/'))
 
-=======
->>>>>>> 8119d0042709891509c1e388492f7d75453988a4
   logIn = () => {
     const email = get(this.refs, 'email.value');
     const password = get(this.refs, 'password.value');
@@ -89,12 +80,7 @@ export default class NavAuth extends Component {
     const user = this.props.user;
     const loggedIn = !!get(user, 'email'); // if user has email property, they're logged in
     const authErrorMessage = get(user, 'authErrorMessage');
-<<<<<<< HEAD
     const viewingProfile = this.props.currentRoute === '/profile';
-
-    return (
-      <ul className="navbar-auth nav navbar-nav navbar-right">
-=======
 
     return (
       <ul className="navbar-auth nav navbar-nav navbar-right">
@@ -114,12 +100,10 @@ export default class NavAuth extends Component {
             ABOUT
           </Link>
         </li>
->>>>>>> 8119d0042709891509c1e388492f7d75453988a4
         {
           loggedIn
           &&
           <li className="nav-button">
-<<<<<<< HEAD
             <a
               className="profile-view-toggle"
               href="#"
@@ -127,14 +111,12 @@ export default class NavAuth extends Component {
             >
               {`VIEW ${!viewingProfile ? 'PROFILE' : 'BLOG'}`}
             </a>
-=======
             <Link
               className="profile-view-toggle"
               to="profile"
             >
               PROFILE
             </Link>
->>>>>>> 8119d0042709891509c1e388492f7d75453988a4
           </li>
         }
         <li
@@ -169,7 +151,6 @@ export default class NavAuth extends Component {
                 </a>
               }
               {
-<<<<<<< HEAD
                 !get(user, 'meetup')
                 &&
                 <a href="/auth/meetup">
@@ -177,8 +158,6 @@ export default class NavAuth extends Component {
                 </a>
               }
               {
-=======
->>>>>>> 8119d0042709891509c1e388492f7d75453988a4
                 !loggedIn
                 &&
                 <input
