@@ -18,6 +18,11 @@ var UserSchema = new mongoose.Schema({
       _id: String,
       photo: String,
       link: String
+    },
+    meetup: {
+      _id: String,
+      photo: String,
+      link: String
     }
 });
 
