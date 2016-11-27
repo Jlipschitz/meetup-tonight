@@ -26,8 +26,7 @@ const verifyCallback = function(accessToken, refreshToken, profile, done) {
   console.log(`acess token -- ${accessToken}, \n refresh token -- ${refreshToken}`)
   request.get(`https://api.meetup.com/2/member/self/?access_token=${accessToken}`, (err, res) => {
     if(err) console.error(err)
-    console.log(res.body.id)
-
+    
     return User.findOne({
       meetup:{
         _id: res.body.id
@@ -36,14 +35,13 @@ const verifyCallback = function(accessToken, refreshToken, profile, done) {
     .then(user => console.log('found user', user) ||
       user && user.meetup._id ? Promise.resolve(user) : // no need to fill in info w/profile if user already has Google log-in
       _.merge(user || new User(), { // use Google profile to fill out user info if it does not already exist
-        email: user && user.email || profile.emails[0].value,
-        firstName: user && user.firstName || profile.name.givenName,
-        lastName: user && user.lastName || profile.name.familyName,
-        userPhoto: user && user.userPhoto || profile._json.image.url || profile._json.picture,
+        firstName: res.body && res.body.name.split(' ')[0] ,
+        lastName: res.body && res.body.name.split(' ')[1],
+        userPhoto: res.body && res.body.photo.highres_link || res.body.photo.photo_link,
         meetup: {
-          _id: profile.id,
-          photo: profile._json.image && profile._json.image.url || profile._json.picture, // this object path seems to vary
-          link: profile._json.url || profile._json.link // this object path seems to vary
+          _id: res.body.id,
+          photo: res.body && res.body.photo.highres_link || res.body.photo.photo_link, // this object path seems to vary
+          link: res.body && res.body.link // this object path seems to vary
         }
       }).save()
     )
