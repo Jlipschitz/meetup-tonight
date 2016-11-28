@@ -22,7 +22,12 @@ var UserSchema = new mongoose.Schema({
     meetup: {
       _id: String,
       photo: String,
-      link: String
+      link: String,
+      lat: String,
+      lon: String,
+      city: String,
+      country: String,
+      state: String
     }
 });
 
