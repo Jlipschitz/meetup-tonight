@@ -40,8 +40,13 @@ const verifyCallback = function(accessToken, refreshToken, profile, done) {
         userPhoto: res.body && res.body.photo.highres_link || res.body.photo.photo_link,
         meetup: {
           _id: res.body.id,
-          photo: res.body && res.body.photo.highres_link || res.body.photo.photo_link, // this object path seems to vary
-          link: res.body && res.body.link // this object path seems to vary
+          photo: res.body && res.body.photo.highres_link || res.body.photo.photo_link, 
+          link: res.body && res.body.link,
+          lat: res.body && res.body.lat,
+          lon: res.body && res.body.lon,
+          city: res.body && res.body.city,
+          country: res.body && res.body.country,
+          state: res.body && res.body.state
         }
       }).save()
     )
