@@ -15,11 +15,11 @@ export function initializationRequests() {
     // retrieve app initialization data once root component has mounted
     Promise.all([
       request.get('/auth/session'),
-      request.get('/api/post')
+      request.get('/api/events/search')
     ])
     .then(([{ data: user }, { data: posts }]) =>
       dispatch(initializeUserAndPosts({
         user: user || null,
-        posts: posts.sort((a,b) => Date.parse(b.createdDate) - Date.parse(a.createdDate)) // sort by date, descending
+        posts: posts
       })));
 }

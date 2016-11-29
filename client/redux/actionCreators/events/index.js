@@ -19,7 +19,7 @@ export function addPost(post) {
 
 export function addPostRequest(postBody) {
   return dispatch => request.post({
-    route: '/api/post',
+    route: '/api/events',
     body: postBody
   }).then(({ data }) => dispatch(addPost(data)));
 }
