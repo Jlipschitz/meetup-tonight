@@ -86,6 +86,7 @@
 
 .o-auth-btn {
   color: #f8e813;
+  text-decoration: none !important;
 }
 
 .o-auth-btn,
@@ -100,14 +101,14 @@
 }
 
 .user-photo {
-    display: none !important;
-    margin: 10px 10px 0 0;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 1px solid #f8e813;
-    background: #000 no-repeat center /contain;
-    cursor: default;
+  display: none !important;
+  margin: 10px 10px 0 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #f8e813;
+  background: #000 no-repeat center /contain;
+  cursor: default;
 }
 
 .user-photo.show {
