@@ -7,7 +7,6 @@ import { initializationRequests } from './redux/actionCreators/initialize';
 
 // other components
 import Navbar from './Navbar';
-import TempMeetupList from './TempMeetupList';
 
 // this will bring this CSS file into build
 import './App.css';
@@ -18,10 +17,6 @@ export default class App extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
-  }
-
-  state = {
-    posts: []
   }
 
   componentWillMount() {

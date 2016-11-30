@@ -3,7 +3,8 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 // components
-import BlogPost from './BlogPost';
+// import BlogPost from './BlogPost';
+import Map from './Map';
 
 // action creators
 import {
@@ -31,6 +32,23 @@ export default class PostList extends Component {
     dispatch: PropTypes.func.isRequired
   }
 
+  state = {
+    location: {
+      lat: 40.75,
+      lng: -73.98
+    }
+  }
+
+  componentDidMount() {
+    window.navigator.geolocation.getCurrentPosition((position) => {
+      this.setState({ location: {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        }
+      })
+    });
+  }
+
   editPost = ({ _id, title, body }, index) => this.props.dispatch(editPost({
     updating: true,
     editIndex: index,
@@ -43,20 +61,21 @@ export default class PostList extends Component {
 
   render() {
     return (
-      <ul className="blog-post-list">
-        {
-          this.props.posts.map((post, index) =>
-            <BlogPost
-              post={post}
-              index={index}
-              key={post.id}
-              delete={this.deletePost}
-              edit={this.editPost}
-              userEmail={this.props.userEmail}
-            />
-          )
-        }
-      </ul>
+      // <ul className="blog-post-list">
+      //   {
+      //     this.props.posts.map((post, index) =>
+      //       <BlogPost
+      //         post={post}
+      //         index={index}
+      //         key={post.id}
+      //         delete={this.deletePost}
+      //         edit={this.editPost}
+      //         userEmail={this.props.userEmail}
+      //       />
+      //     )
+      //   }
+      // </ul>
+      <Map markers={this.props.posts || []} center={this.state.location}/>
     );
   }
 }
