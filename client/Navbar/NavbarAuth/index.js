@@ -10,9 +10,6 @@ import './index.css';
 
 // action creators
 import {
-  logIn,
-  signUp,
-  addPassword,
   logoutRequest
 } from '../../redux/actionCreators/user';
 
@@ -24,23 +21,19 @@ import {
 export default class NavAuth extends Component {
   static propTypes = {
     user: PropTypes.shape({
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
       email: PropTypes.string,
       createdDate: PropTypes.string,
-      hasPassword: PropTypes.bool,
-      google: PropTypes.shape({
-        _id: PropTypes.string.isRequired,
-        photo: PropTypes.string.isRequired,
-        link: PropTypes.string.isRequired
-      }),
-      facebook: PropTypes.shape({
-        _id: PropTypes.string.isRequired,
-        photo: PropTypes.string.isRequired,
-        link: PropTypes.string.isRequired
-      }),
       meetup: PropTypes.shape({
         _id: PropTypes.string.isRequired,
         photo: PropTypes.string.isRequired,
-        link: PropTypes.string.isRequired
+        link: PropTypes.string.isRequired,
+        lat: PropTypes.string.isRequired,
+        lon: PropTypes.string.isRequired,
+        city: PropTypes.string.isRequired,
+        country: PropTypes.string.isRequired,
+        state: PropTypes.string.isRequired
       })
     }),
     dispatch: PropTypes.func.isRequired
@@ -49,23 +42,6 @@ export default class NavAuth extends Component {
   viewProfile = () => this.props.dispatch(push('/profile'))
 
   viewBlog = () => this.props.dispatch(push('/'))
-
-  logIn = () => {
-    const email = get(this.refs, 'email.value');
-    const password = get(this.refs, 'password.value');
-    this.props.dispatch(logIn(email, password));
-  }
-
-  signUp = () => {
-    const email = get(this.refs, 'email.value');
-    const password = get(this.refs, 'password.value');
-    this.props.dispatch(signUp(email, password));
-  }
-
-  addPassword = () => {
-    const password = get(this.refs, 'password.value');
-    this.props.dispatch(addPassword(this.props.user._id, password));
-  }
 
   logout = () => {
     if(this.props.currentRoute !== '/') {
@@ -78,7 +54,7 @@ export default class NavAuth extends Component {
 
   render() {
     const user = this.props.user;
-    const loggedIn = !!get(user, 'email'); // if user has email property, they're logged in
+    const loggedIn = !!get(user, '_id'); // if user has email property, they're logged in
     const authErrorMessage = get(user, 'authErrorMessage');
     const viewingProfile = this.props.currentRoute === '/profile';
 
@@ -120,36 +96,17 @@ export default class NavAuth extends Component {
           </li>
         }
         <li
-          className={`nav user-photo ${get(user, 'google.photo') && 'show'}`}
-          style={get(user, 'google.photo') && {backgroundImage: `url(${user.google.photo})`}}
-        />
-        <li
-          className={`nav user-photo ${get(user, 'facebook.photo') && 'show'}`}
-          style={get(user, 'facebook.photo') && {backgroundImage: `url(${user.facebook.photo})`}}
+          className={`nav user-photo ${get(user, 'meetup.photo') && 'show'}`}
+          style={get(user, 'meetup.photo') && {backgroundImage: `url(${user.meetup.photo})`}}
         />
         <li
           className="nav-button"
           onKeyDown={this.loginOnEnterKey}
         >
           {
-            (!loggedIn || !user.hasPassword || !user.google || !user.facebook) // check user ""
+            (!loggedIn) // check user ""
             &&
             <span>
-              LOG IN &#10161;
-              {
-                !get(user, 'google')
-                &&
-                <a href="/auth/google">
-                  <i className="fa fa-google o-auth-btn"/>
-                </a>
-              }
-              {
-                !get(user, 'facebook')
-                &&
-                <a href="/auth/facebook">
-                  <i className="fa fa-facebook o-auth-btn"/>
-                </a>
-              }
               {
                 !get(user, 'meetup')
                 &&
@@ -158,7 +115,7 @@ export default class NavAuth extends Component {
                 </a>
               }
               {
-                !loggedIn
+                loggedIn
                 &&
                 <input
                   className="nav-input"
@@ -166,46 +123,6 @@ export default class NavAuth extends Component {
                   placeholder="email"
                   type="text"
                 />
-              }
-              {
-                !get(user, 'hasPassword')
-                &&
-                <input
-                  className="nav-input"
-                  ref="password"
-                  placeholder="password"
-                  type="password"
-                />
-              }
-              {
-                loggedIn && !get(user, 'hasPassword')
-                &&
-                <button
-                  className="local-auth-button"
-                  onClick={this.addPassword}
-                >
-                  Add Password
-                </button>
-              }
-              {
-                !loggedIn
-                &&
-                <button
-                  className="local-auth-button"
-                  onClick={this.logIn}
-                >
-                  Log In
-                </button>
-              }
-              {
-                !loggedIn
-                &&
-                <button
-                  className="local-auth-button"
-                  onClick={this.signUp}
-                >
-                  Sign Up
-                </button>
               }
             </span>
           }

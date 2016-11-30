@@ -26,7 +26,7 @@ const verifyCallback = function(accessToken, refreshToken, profile, done) {
   console.log(`acess token -- ${accessToken}, \n refresh token -- ${refreshToken}`)
   request.get(`https://api.meetup.com/2/member/self/?access_token=${accessToken}`, (err, res) => {
     if(err) console.error(err)
-    
+
     return User.findOne({
       meetup:{
         _id: res.body.id
@@ -40,7 +40,7 @@ const verifyCallback = function(accessToken, refreshToken, profile, done) {
         userPhoto: res.body && res.body.photo.highres_link || res.body.photo.photo_link,
         meetup: {
           _id: res.body.id,
-          photo: res.body && res.body.photo.highres_link || res.body.photo.photo_link, 
+          photo: res.body && res.body.photo.highres_link || res.body.photo.photo_link,
           link: res.body && res.body.link,
           lat: res.body && res.body.lat,
           lon: res.body && res.body.lon,
@@ -81,15 +81,6 @@ const passportAuthCbCb = (req, res) => {
 }
 
 export default api => {
-  api.get('/meetup', passport.authenticate('meetup', {
-    failureRedirect: '/',
-    session: false
-  }), function(req, res){
-    // The request will be redirected to Meetup for authentication, so this
-    // function will not be called.
-  });
-  api.get('/meetup/callback', passport.authenticate('meetup', {
-    failureRedirect: '/',
-    session: false
-  }), passportAuthCbCb);
+  api.get('/meetup',  passport.authenticate('meetup'));
+  api.get('/meetup/callback', passportAuthCb, passportAuthCbCb);
 };

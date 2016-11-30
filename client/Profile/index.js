@@ -16,23 +16,19 @@ import prettyDate from '../utils/prettyDate';
 export default class PostForm extends Component {
   static propTypes = {
     user: PropTypes.shape({
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
       email: PropTypes.string,
       createdDate: PropTypes.string,
-      hasPassword: PropTypes.bool,
-      google: PropTypes.shape({
-        _id: PropTypes.string.isRequired,
-        photo: PropTypes.string.isRequired,
-        link: PropTypes.string.isRequired
-      }),
-      facebook: PropTypes.shape({
-        _id: PropTypes.string.isRequired,
-        photo: PropTypes.string.isRequired,
-        link: PropTypes.string.isRequired
-      }),
       meetup: PropTypes.shape({
         _id: PropTypes.string.isRequired,
         photo: PropTypes.string.isRequired,
-        link: PropTypes.string.isRequired
+        link: PropTypes.string.isRequired,
+        lat: PropTypes.string.isRequired,
+        lon: PropTypes.string.isRequired,
+        city: PropTypes.string.isRequired,
+        country: PropTypes.string.isRequired,
+        state: PropTypes.string.isRequired
       })
     })
   }

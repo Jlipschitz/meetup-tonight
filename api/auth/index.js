@@ -2,11 +2,7 @@ import passport from 'passport';
 import mongoose from 'mongoose';
 import expressJwt from 'express-jwt';
 
-// handlers
-import facebookHandling from './facebook';
-import googleHandling from './google';
-// import meetupHandling from './meetup';
-import localHandling from './local';
+import meetupHandling from './meetup';
 
 // models
 const User = mongoose.model('User');
@@ -56,10 +52,7 @@ export default api => {
   });
 
   // handlers for different types of authentication
-  // meetupHandling(api);
-  googleHandling(api);
-  facebookHandling(api);
-  localHandling(api);
+  meetupHandling(api);
 
   // all login types will want to do this
   api.use((req, res) => {
