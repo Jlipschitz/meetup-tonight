@@ -39,10 +39,6 @@ export default class NavAuth extends Component {
     dispatch: PropTypes.func.isRequired
   }
 
-  viewProfile = () => this.props.dispatch(push('/profile'))
-
-  viewBlog = () => this.props.dispatch(push('/'))
-
   logout = () => {
     if(this.props.currentRoute !== '/') {
       this.props.dispatch(push('/'))
@@ -56,37 +52,13 @@ export default class NavAuth extends Component {
     const user = this.props.user;
     const loggedIn = !!get(user, '_id'); // if user has email property, they're logged in
     const authErrorMessage = get(user, 'authErrorMessage');
-    const viewingProfile = this.props.currentRoute === '/profile';
 
     return (
       <ul className="navbar-auth nav navbar-nav navbar-right">
-        <li className="nav-button">
-          <Link
-            className="profile-view-toggle"
-            to=""
-          >
-            BLOG
-          </Link>
-        </li>
-        <li className="nav-button">
-          <Link
-            className="profile-view-toggle"
-            to="about"
-          >
-            ABOUT
-          </Link>
-        </li>
         {
           loggedIn
           &&
           <li className="nav-button">
-            <a
-              className="profile-view-toggle"
-              href="#"
-              onClick={!viewingProfile ? this.viewProfile : this.viewBlog}
-            >
-              {`VIEW ${!viewingProfile ? 'PROFILE' : 'BLOG'}`}
-            </a>
             <Link
               className="profile-view-toggle"
               to="profile"
@@ -104,27 +76,28 @@ export default class NavAuth extends Component {
           onKeyDown={this.loginOnEnterKey}
         >
           {
-            (!loggedIn) // check user ""
+            !loggedIn // check user ""
             &&
-            <span>
-              {
-                !get(user, 'meetup')
-                &&
-                <a href="/auth/meetup">
-                  <i className="fa fa-meetup o-auth-btn"/>
-                </a>
-              }
-              {
-                loggedIn
-                &&
-                <input
-                  className="nav-input"
-                  ref="email"
-                  placeholder="email"
-                  type="text"
-                />
-              }
-            </span>
+            <div>
+              <a
+                className="o-auth-btn"
+                href="/auth/meetup"
+              >
+                SIGN IN / SIGN UP <i className="fa fa-meetup"/>
+              </a>
+            </div>
+          }
+          {
+            false // hiding for now
+            &&
+            loggedIn
+            &&
+            <input
+              className="nav-input"
+              ref="email"
+              placeholder="email"
+              type="text"
+            />
           }
           {
             loggedIn

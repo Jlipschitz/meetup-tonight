@@ -1,23 +1,39 @@
-.example-react-app-nav {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-  text-align: center;
-
-  .example-react-app-logo {
-    animation: example-react-app-spin infinite 20s linear;
-    height: 80px;
-  }
-
-  .example-react-app-header {
-    font-family: cursive;
-    margin-top: 5px;
-    font-weight: 100;
-  }
+/*-----index------*/
+header .navbar-brand{
+  padding: 0;
+  display:inline-block;
+  margin: 20px 0;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1;
 }
 
-@keyframes example-react-app-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+header .navbar-right{
+  float: right !important;
+  list-style: none;
+}
+
+header .nav-left{
+  list-style: none;
+  padding: 0;
+}
+
+header .nav-left li{
+ float: left;
+ padding-left: 25px;
+}
+
+header .nav-left li:first-child{
+  padding-left: 0;
+}
+
+header .navbar-default{
+  border: none !important;
+  margin-bottom: 0;
+   -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+          border-radius: 0;
+  background-color: rgba(9,0,0,0.4);
+  color: #ffffff !important;
+  padding-left: 20px;
+  padding-right: 20px;
 }
