@@ -69,6 +69,12 @@
 /*-----about------*/
 #about{
   background-color: #ffffff;
+
+  body{
+      background: url(../img/m-background.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+  }
 }
 
 .team h1{
