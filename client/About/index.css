@@ -67,14 +67,11 @@
 
 
 /*-----about------*/
-#about{
-  background-color: #ffffff;
-
-  body{
-      background: url(./bkg.jpg);
-      background-size: cover;
-      background-repeat: no-repeat;
-  }
+#root {
+    background: url(./bkg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
 }
 
 .team h1{
@@ -110,6 +107,13 @@
 .col-md-5{
   padding: 0;
 }
+
+#about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #about .col-md-7 h1{
   font-family: 'Roboto', sans-serif;
   margin: 170px 0;
@@ -135,13 +139,18 @@
 }
 
 
-.about-info p {
-  font-family: 'Roboto', sans-serif;
-  text-align: left;
-  color: #394e5b;
-  padding: 60px 40px;
-  line-height: 2;
-  letter-spacing: 1px;
+.about-info {
+  width: 50%;
+  min-width: 450px;
+
+  p {
+    font-family: 'Roboto', sans-serif;
+    text-align: left;
+    color: #394e5b;
+    padding: 60px 0;
+    line-height: 2;
+    letter-spacing: 1px;
+  }
 }
 .map-section{
   background-color: #fefef1;
@@ -150,7 +159,6 @@
   text-align: center;
   text-transform: uppercase;
   color: #394e5b;
-  height: 435px;
 }
 .team-mumbers{
   position: relative;
@@ -185,15 +193,12 @@
 
 
 .about-f{
-  position: relative;
+  position: absolute;
+  bottom: 0;
 }
 .about-h6{
   font-family: 'Roboto', sans-serif;
-  position: absolute;
-  left: 50%;
   color: #394e5b;
-  transform: translateX(-50%);
-  top: -20px;
   margin: 0;
 }
 

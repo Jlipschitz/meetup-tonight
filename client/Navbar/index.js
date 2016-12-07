@@ -12,40 +12,35 @@ import NavbarAuth from './NavbarAuth';
 export default class Navbar extends Component {
   render() {
     return (
-      <header>
-        <div className="container-fluid">
-          <nav className="navbar navbar-default">
-            <div className="container-fluid">
-              <div className="navbar-brand">
-                Meetup Tonight
-              </div>
-              <ul className="nav navbar-nav nav-left">
-                <li>
-                  <Link
-                    className="profile-view-toggle"
-                    to="about"
-                  >
-                    ABOUT
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="profile-view-toggle"
-                    to=""
-                  >
-                    DASHBOARD
-                  </Link>
-                </li>
-              </ul>
-              <ul className="nav navbar-nav navbar-right">
-                <li>
-                  <NavbarAuth />
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </header>
+      <nav className="navbar-meetup">
+        <li className="navbar-meetup-left">
+          <Link
+            className="navbar-brand"
+            to=""
+          >
+            Meetup Tonight
+          </Link>
+        </li>
+        <li className="navbar-meetup-center">
+          <li className="profile-view-toggle">
+            <Link
+              className="profile-view-toggle-link"
+              to="about"
+            >
+              ABOUT
+            </Link>
+          </li>
+          <li className="profile-view-toggle">
+            <Link
+              className="profile-view-toggle-link"
+              to=""
+            >
+              DASHBOARD
+            </Link>
+          </li>
+        </li>
+        <NavbarAuth className="navbar-meetup-right" />
+      </nav>
     );
   }
 }

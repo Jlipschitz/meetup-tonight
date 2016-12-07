@@ -1,14 +1,6 @@
 .navbar-auth {
   /* flow */
-  position: fixed;
-  top: 0;
-  right: 0;
   padding: 5px;
-
-  /* view */
-  background-color: #222;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
 }
 
 .profile-view-toggle {

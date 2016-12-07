@@ -54,7 +54,7 @@ export default class NavAuth extends Component {
     const authErrorMessage = get(user, 'authErrorMessage');
 
     return (
-      <ul className="navbar-auth nav navbar-nav navbar-right">
+      <li className="navbar-auth">
         {
           loggedIn
           &&
@@ -118,7 +118,7 @@ export default class NavAuth extends Component {
             {authErrorMessage}
           </div>
         }
-      </ul>
+      </li>
     );
   }
 }
