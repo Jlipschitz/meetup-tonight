@@ -60,10 +60,6 @@ export default class PostForm extends Component {
         {this.genField('email')}
         {this.genField('createdDate', prettyDate)}
         {this.genField('hasPassword')}
-        {this.genImage('google.photo')}
-        {this.genField('google.link')}
-        {this.genImage('facebook.photo')}
-        {this.genField('facebook.link')}
         {this.genImage('meetup.photo')}
         {this.genField('meetup.link')}
       </ul>

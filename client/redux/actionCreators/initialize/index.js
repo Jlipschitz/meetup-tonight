@@ -20,6 +20,6 @@ export function initializationRequests() {
     .then(([{ data: user }, { data: posts }]) =>
       dispatch(initializeUserAndPosts({
         user: user || null,
-        posts: posts
+        posts: posts.slice(0,4)
       })));
 }

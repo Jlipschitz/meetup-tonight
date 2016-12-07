@@ -3,15 +3,11 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 // components
-// import BlogPost from './BlogPost';
+import BlogPost from './BlogPost';
 import Map from './Map';
 
 // action creators
-import {
-  editPost,
-  deletePostRequest
-} from '../../redux/actionCreators/events';
-
+import {} from '../../redux/actionCreators/events';
 
 @connect(store => ({
   posts: store.events,
@@ -49,33 +45,23 @@ export default class PostList extends Component {
     });
   }
 
-  editPost = ({ _id, title, body }, index) => this.props.dispatch(editPost({
-    updating: true,
-    editIndex: index,
-    editId: _id,
-    title,
-    body
-  }));
-
-  deletePost = _id => this.props.dispatch(deletePostRequest(_id));
-
   render() {
     return (
-      // <ul className="blog-post-list">
-      //   {
-      //     this.props.posts.map((post, index) =>
-      //       <BlogPost
-      //         post={post}
-      //         index={index}
-      //         key={post.id}
-      //         delete={this.deletePost}
-      //         edit={this.editPost}
-      //         userEmail={this.props.userEmail}
-      //       />
-      //     )
-      //   }
-      // </ul>
+      <div>
+      <ul className="blog-post-list">
+        {
+          this.props.posts.map((post, index) =>
+            <BlogPost
+              post={post}
+              index={index}
+              key={post.id}
+              userEmail={this.props.userEmail}
+            />
+          )
+        }
+      </ul>
       <Map markers={this.props.posts || []} center={this.state.location}/>
+      </div>
     );
   }
 }
