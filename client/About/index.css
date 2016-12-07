@@ -71,7 +71,7 @@
   background-color: #ffffff;
 
   body{
-      background: url(../img/m-background.png);
+      background: url(./bkg.jpg);
       background-size: cover;
       background-repeat: no-repeat;
   }
