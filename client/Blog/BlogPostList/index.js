@@ -10,6 +10,7 @@ import Map from './Map';
 import {} from '../../redux/actionCreators/events';
 
 @connect(store => ({
+  searchInput: store.search,
   posts: store.events,
   userEmail: store.user && store.user.email
 }))
@@ -46,11 +47,15 @@ export default class PostList extends Component {
   }
 
   render() {
+    let filtered = this.props.posts && this.props.posts.filter(
+      (item) => item.description && item.description.includes(this.props.searchInput) || item.name.includes(this.props.searchInput)
+    );
+
     return (
       <div>
       <ul className="blog-post-list">
         {
-          this.props.posts.map((post, index) =>
+          filtered.map((post, index) =>
             <BlogPost
               post={post}
               index={index}
@@ -60,7 +65,7 @@ export default class PostList extends Component {
           )
         }
       </ul>
-      <Map markers={this.props.posts || []} center={this.state.location}/>
+      <Map markers={filtered} center={this.state.location}/>
       </div>
     );
   }
