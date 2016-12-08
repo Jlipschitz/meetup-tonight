@@ -47,9 +47,20 @@ export default class PostList extends Component {
   }
 
   render() {
-    let filtered = this.props.posts && this.props.posts.filter(
-      (item) => item.description && item.description.includes(this.props.searchInput) || item.name.includes(this.props.searchInput)
-    );
+    var filtered;
+
+    if(this.props.searchInput[0]) {
+      filtered = this.props.posts && this.props.posts.filter( (item) =>
+        this.props.searchInput.some( term =>
+          item.description ? item.description.includes(term) : item.name.includes(term)
+        )
+      );
+    } else {
+      filtered = this.props.posts;
+    }
+
+    // item.description && item.description.includes(this.props.searchInput) || item.name.includes(this.props.searchInput)
+    // );
 
     return (
       <div>

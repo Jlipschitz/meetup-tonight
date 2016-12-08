@@ -1,37 +1,43 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import './index.css';
 
+// action creators
+import {
+  editSearchInput
+} from '../../../redux/actionCreators/events';
+
+
+@connect(store => ({
+  searchInput: store.search,
+}))
+
 export default class Search extends Component {
-  // static propTypes = {
-  //   dispatch: PropTypes.func.isRequired,
-  //   location: PropTypes.object,
-  //   search: PropTypes.array
-  // }
-  // constructor(props, context) {
-  //   super(props, context);
-  //   // asyncActionCreator.search(this.state.searchTags.concat(str))
-  //   // only run search when there's 50 ms of no other running's of search
-  //   // this.search = (arr = []) => // default to empty array
-  //   //   this.props.dispatch(push(`/admin${arr.length ? `?${queryStringify({search: arr})}` : ''}`));
-  //   // this.debouncedSearch = _.debounce(this.search, 200);
-  // }
+
   state = {
     searchTags:[]
   }
-  // componentWillMount() {
-  //   if(this.props.search) {
-  //     this.setState({
-  //       searchTags: this.props.search // need to make string JSON parse-able
-  //     });
-  //   }
-  // }
+  //
+  // editSearchInput = event => this.props.dispatch(
+  //   editSearchInput({
+  //     searchInput: event.target.value
+  //   })
+  // );
+  //
+  // onSearchChange = value => console.log(value)
+  change = value => this.props.dispatch(
+    editSearchInput({
+      searchInput: value
+    })
+  )
+
   inputKeyEvents(e) {
     if (e.key === 'Enter') { // Enter pressed
       if (e.target.value.trim()) { // test if input is empty
         const updatedSearch = this.state.searchTags.concat(e.target.value.trim());
         // this.search(updatedSearch);
-        this.props.change(updatedSearch);
+        this.change(updatedSearch);
         this.setState({ // add tag
           searchTags: updatedSearch// remove whitespace at the beginning and end of string
         });
@@ -45,7 +51,7 @@ export default class Search extends Component {
   removeTag(removalIndex) {
     const updatedSearch = this.state.searchTags.filter((val, index) => index !== removalIndex);
     // this.debouncedSearch(updatedSearch);
-    this.props.change(updatedSearch);
+    this.change(updatedSearch);
     this.setState({
       searchTags: updatedSearch
     });
@@ -53,7 +59,7 @@ export default class Search extends Component {
   searchOnChange(e) {
     if (e.target.value.trim().length > 2 || e.key === 'Backspace') {
       // this.debouncedSearch(this.state.searchTags.concat(e.target.value.trim()));
-      this.props.change(this.state.searchTags.concat(e.target.value.trim()));
+      this.change(this.state.searchTags.concat(e.target.value.trim()));
     }
   }
   render() {
