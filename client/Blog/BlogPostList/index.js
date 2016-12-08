@@ -48,8 +48,9 @@ export default class PostList extends Component {
   render() {
     return (
       <div>
-      <ul className="blog-post-list">
-        {
+        <div className="event-container-list">
+          <ul className="blog-post-list">
+            {
           this.props.posts.map((post, index) =>
             <BlogPost
               post={post}
@@ -57,10 +58,13 @@ export default class PostList extends Component {
               key={post.id}
               userEmail={this.props.userEmail}
             />
-          )
-        }
-      </ul>
-      <Map markers={this.props.posts || []} center={this.state.location}/>
+              )
+            }
+         </ul>
+      </div>
+        <div className="event-map-list">
+          <Map markers={this.props.posts || []} center={this.state.location}/>
+        </div>
       </div>
     );
   }

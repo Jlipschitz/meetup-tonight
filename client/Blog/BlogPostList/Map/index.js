@@ -12,7 +12,17 @@ export default class Map extends Component {
           <GoogleMap
             defaultZoom={11}
             center={this.props.center}
-            options={{streetViewControl: false, mapTypeControl: false}}
+            options={{
+              streetViewControl: false,
+              mapTypeControl: false,
+              styles: [{
+                stylers:
+                [{ 'saturation': -100 },
+                { 'gamma': 0.8 },
+                { 'lightness': 4 },
+                { 'visibility': 'on' }]
+              }]
+            }}
           >
             {
               this.props.markers.slice(0,30).map((item, i) => (
