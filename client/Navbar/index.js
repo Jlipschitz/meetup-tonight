@@ -18,6 +18,7 @@ export default class Navbar extends Component {
             className="navbar-brand"
             to=""
           >
+
             Meetup Tonight
           </Link>
         </li>
