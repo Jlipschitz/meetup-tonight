@@ -2,6 +2,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+import Search from './chips';
+
 // styling
 import './index.css';
 
@@ -28,6 +30,8 @@ export default class PostForm extends Component {
     })
   );
 
+  onSearchChange = value => console.log(value)
+
   render() {
     return (
       <li className="blog-add-post">
@@ -38,6 +42,7 @@ export default class PostForm extends Component {
           onChange={this.editSearchInput}
           value={this.props.searchInput}
         />
+        <Search change={this.onSearchChange}/>
         {/* <button
           onClick={
             this.search
@@ -46,6 +51,7 @@ export default class PostForm extends Component {
         Search
         </button> */}
       </li>
+
     );
   }
 }
