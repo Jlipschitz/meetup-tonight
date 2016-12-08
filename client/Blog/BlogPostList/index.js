@@ -36,6 +36,7 @@ export default class PostList extends Component {
   }
 
   componentDidMount() {
+    console.log(this.state)
     window.navigator.geolocation.getCurrentPosition((position) => {
       this.setState({ location: {
           lat: position.coords.latitude,
@@ -51,19 +52,22 @@ export default class PostList extends Component {
         <div className="event-container-list">
           <ul className="blog-post-list">
             {
-          this.props.posts.map((post, index) =>
-            <BlogPost
-              post={post}
-              index={index}
-              key={post.id}
-              userEmail={this.props.userEmail}
-            />
+              this.props.posts.map((post, index) =>
+                <BlogPost
+                  post={post}
+                  index={index}
+                  key={post.id}
+                  userEmail={this.props.userEmail}
+                  />
               )
             }
-         </ul>
-      </div>
+          </ul>
+        </div>
         <div className="event-map-list">
-          <Map markers={this.props.posts || []} center={this.state.location}/>
+          <Map
+            markers={this.props.posts || []}
+            center={this.state.location}
+            />
         </div>
       </div>
     );
