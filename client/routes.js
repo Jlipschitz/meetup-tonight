@@ -7,7 +7,7 @@ import authedRoute from './lib/authedRoute';
 // actual app components
 import App from './App';
 import Blog from './Blog';
-import Profile from './Profile';
+// import Profile from './Profile';
 import About from './About';
 import NotFound from './NotFound';
 

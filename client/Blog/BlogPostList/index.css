@@ -1,9 +1,10 @@
 .event-container-list {
   position: relative;
+  display: flex;
+  flex-direction: column;
   z-index: 1;
   float: right;
   width: 47.5vw;
-  padding-bottom: 27px;
 
   top: 25px;
   height: 80vh;
@@ -13,7 +14,8 @@
   border-radius: 5px;
 
   .event-list {
-    height: 89%;
+    position: relative;
+    height: 100%;
     margin: 0 27px 27px 27px;
     overflow-y: scroll;
     background-color: white;
