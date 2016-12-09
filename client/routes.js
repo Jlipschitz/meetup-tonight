@@ -19,7 +19,6 @@ export default store => (
       path='about'
       component={About}
     />
-
     { /* Routes requiring login */ }
     <Route onEnter={authedRoute(store)}>
       <Route
