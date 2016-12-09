@@ -10,12 +10,12 @@ const nightStylesObj = [
   {
     featureType: 'administrative.locality',
     elementType: 'labels.text.fill',
-    stylers: [{color: '#d59563'}]
+    stylers: [{color: '#FF1177'}]
   },
   {
     featureType: 'poi',
     elementType: 'labels.text.fill',
-    stylers: [{color: '#d59563'}]
+    stylers: [{color: '#FF1177'}]
   },
   {
     featureType: 'poi.park',
@@ -65,7 +65,7 @@ const nightStylesObj = [
   {
     featureType: 'transit.station',
     elementType: 'labels.text.fill',
-    stylers: [{color: '#d59563'}]
+    stylers: [{color: '#FF1177'}]
   },
   {
     featureType: 'water',
