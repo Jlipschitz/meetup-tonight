@@ -4,9 +4,9 @@ import MeetupInfo from '../MeetupInfo';
 
 // taken from: https://developers.google.com/maps/documentation/javascript/
 const nightStylesObj = [
-  {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
-  {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-  {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+  {elementType: 'geometry', stylers: [{color: '#2E2E2E'}]},
+  {elementType: 'labels.text.stroke', stylers: [{color: '#2E2E2E'}]},
+  {elementType: 'labels.text.fill', stylers: [{color: '#FF1177'}]},
   {
     featureType: 'administrative.locality',
     elementType: 'labels.text.fill',
@@ -15,7 +15,7 @@ const nightStylesObj = [
   {
     featureType: 'poi',
     elementType: 'labels.text.fill',
-    stylers: [{color: '#FF1177'}]
+    stylers: [{color: '#790048'}]
   },
   {
     featureType: 'poi.park',
@@ -25,7 +25,7 @@ const nightStylesObj = [
   {
     featureType: 'poi.park',
     elementType: 'labels.text.fill',
-    stylers: [{color: '#6b9a76'}]
+    stylers: [{color: '#790048'}]
   },
   {
     featureType: 'road',
@@ -45,7 +45,7 @@ const nightStylesObj = [
   {
     featureType: 'road.highway',
     elementType: 'geometry',
-    stylers: [{color: '#746855'}]
+    stylers: [{color: '#34001F'}]
   },
   {
     featureType: 'road.highway',
@@ -55,7 +55,7 @@ const nightStylesObj = [
   {
     featureType: 'road.highway',
     elementType: 'labels.text.fill',
-    stylers: [{color: '#f3d19c'}]
+    stylers: [{color: '#790048'}]
   },
   {
     featureType: 'transit',
@@ -68,20 +68,17 @@ const nightStylesObj = [
     stylers: [{color: '#FF1177'}]
   },
   {
-    featureType: 'water',
-    elementType: 'geometry',
-    stylers: [{color: '#17263c'}]
+    "featureType": "water",
+    "elementType": "all",
+    "stylers": [
+      {
+        "color": "#000000"
+      },
+      {
+        "visibility": "simplified"
+      }
+    ]
   },
-  {
-    featureType: 'water',
-    elementType: 'labels.text.fill',
-    stylers: [{color: '#515c6d'}]
-  },
-  {
-    featureType: 'water',
-    elementType: 'labels.text.stroke',
-    stylers: [{color: '#17263c'}]
-  }
 ];
 
 
