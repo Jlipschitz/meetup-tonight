@@ -1,6 +1,6 @@
 .search {
   position: relative;
-  height: 200px;
+  height: 42px;
   width: 100%;
   padding: 7px 0;
   margin-bottom: 33px;
@@ -18,7 +18,7 @@
     height: 23px;
     width: 100%;
     /*left: $left-margin;*/
-    font-size: 12px;
+    font-size: 14px;
     overflow-x: auto;
     overflow-y: hidden;
     /*// flexbox*/
@@ -59,7 +59,8 @@
       margin: 5px 0 0 0.5px;
       outline: none;
       border: 0;
-      height: 18px;
+      padding-left: 2px;
+      height: 24px;
       /*// font*/
       font-family: Lato;
       color: #4a4a4a;

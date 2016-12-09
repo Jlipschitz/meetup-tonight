@@ -74,6 +74,7 @@
     "history": "^2.0.0",
     "iso-path-join": "^1.0.6",
     "jsonwebtoken": "^7.1.9",
+    "moment": "^2.17.1",
     "mongoose": "^4.6.4",
     "morgan-body": "^0.9.5",
     "passport": "^0.3.2",
