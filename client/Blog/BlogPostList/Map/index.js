@@ -1,37 +1,34 @@
 import React, { Component } from 'react'
 import { GoogleMapLoader, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
+import moment from 'moment';
 
 export default class Map extends Component {
   state = {
-    showingInfoWindow: false,
-    activeMarker: {},
-    selectedPlace: {name: 'test'},
+    activeMarkerId: null,
   }
 
-  onMarkerClick = (props, marker, e) => {
-    console.log(`marker is ---- ${marker}`)
-    console.log(props)
-    console.log(e)
-    console.log(this.state)
+  onMarkerClick = marker => {
     this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
+      activeMarkerId: marker.id
+    });
+  }
+
+  onInfoCloseClick = () => {
+    this.setState({
+      activeMarkerId: null
     });
   }
 
   onMapClicked = (props) => {
     if (this.state.showingInfoWindow) {
       this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
+        activeMarkerId: null
       })
     }
   }
-  componentDidMount() {
-    console.log(this.state)
-  }
   render() {
+    const activeMarkerData = this.state.activeMarkerId && this.props.markers.find(marker => marker.id === this.state.activeMarkerId);
+
     return (
       <GoogleMapLoader
         containerElement={
@@ -50,7 +47,7 @@ export default class Map extends Component {
             {
               this.props.markers.slice(0, 30).map((item, i) => (
                 <Marker
-                  onClick={this.onMarkerClick}
+                  onClick={markerData => this.onMarkerClick(item, markerData)}
                   name={'Current location'}
                   key={i}
                   position={{
@@ -60,13 +57,34 @@ export default class Map extends Component {
                   />
               ))
             }
-            <InfoWindow
-              marker={this.state.activeMarker}
-              visible={this.state.showingInfoWindow}>
-              <div>
-                <h1>{this.state.selectedPlace.name}</h1>
-              </div>
-            </InfoWindow>
+            {
+              activeMarkerData
+              &&
+              <InfoWindow
+                marker={activeMarkerData}
+                onCloseclick={this.onInfoCloseClick}
+              >
+                <div>
+                  <a href={activeMarkerData.link}>
+                    <h4>{activeMarkerData.name}</h4>
+                  </a>
+                    {
+                      activeMarkerData.venue && activeMarkerData.venue.name &&
+                      <p>{activeMarkerData.venue.name}</p>
+                  }
+                      <p>
+                        {activeMarkerData.status}
+                        {activeMarkerData.fee && `$${activeMarkerData.fee.amount}`}
+                      </p>
+                    <p>{activeMarkerData.venue.address_1}</p>
+                      <p>{activeMarkerData.venue.city},&nbsp;
+                         {activeMarkerData.venue.state}
+                         {activeMarkerData.venue.zip}
+                      </p>
+                  <p>{moment(activeMarkerData.time).format('MMMM Do YYYY, h:mm a')}</p>
+                </div>
+              </InfoWindow>
+            }
           </GoogleMap>
         }
         />
