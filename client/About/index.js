@@ -16,8 +16,9 @@ export default class About extends Component {
      <section id="about">
        <div className="about-info">
           <p>
-            The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
-            The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+            We are New York tech lovers who have decided to make it actually possible to
+            search for Meetup events on a map.  This is a feature we see as sorely missing
+            from Meetup itself and we had a grand old time building it ourselves.  Enjoy!
           </p>
           <div className="team">
             <div className="team-mumbers">

@@ -71,6 +71,8 @@
     background: url(./bkg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    background-color: #000;
+    background-blend-mode: hard-light;
     height: 100%;
 }
 
@@ -140,12 +142,12 @@
 
 
 .about-info {
-  width: 50%;
+  width: 40%;
   min-width: 450px;
 
   p {
     font-family: 'Roboto', sans-serif;
-    text-align: left;
+    text-align: center;
     color: #394e5b;
     padding: 60px 0;
     line-height: 2;
