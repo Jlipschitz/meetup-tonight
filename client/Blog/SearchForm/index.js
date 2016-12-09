@@ -43,13 +43,6 @@ export default class PostForm extends Component {
           value={this.props.searchInput}
         />
         <Search change={this.onSearchChange}/>
-        {/* <button
-          onClick={
-            this.search
-          }
-        >
-        Search
-        </button> */}
       </li>
 
     );

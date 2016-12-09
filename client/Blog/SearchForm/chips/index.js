@@ -65,7 +65,6 @@ export default class Search extends Component {
   render() {
     return (
       <div className='search center-column-3'>
-        <i className='search-icon vertical-center'/>
         <div className='search-input-container'>
           {
             this.state.searchTags.map((val, index) =>

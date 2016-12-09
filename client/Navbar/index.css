@@ -1,5 +1,7 @@
 /*-----index------*/
 .navbar-meetup {
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,10 +17,6 @@
 
   .profile-view-toggle-link {
     text-decoration: none !important;
-
-    &:hover {
-
-    }
   }
 }
 

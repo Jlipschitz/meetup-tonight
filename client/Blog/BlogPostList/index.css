@@ -1,0 +1,23 @@
+.event-container-list {
+  position: relative;
+  z-index: 1;
+  float: right;
+  width: 47.5vw;
+  margin-bottom: 27px;
+  box-sizing: content-box;
+
+  top: 25px;
+  height: 80vh;
+  overflow: hidden;
+
+  background-color: rgba(0,0,0,.5);
+  border-radius: 5px;
+
+  .event-list {
+    height: 100%;
+    margin: 0 27px 0 27px;
+    overflow-y: scroll;
+    background-color: white;
+    border-radius: 5px;
+  }
+}

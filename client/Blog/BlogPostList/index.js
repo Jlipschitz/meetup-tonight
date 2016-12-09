@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 // components
 import BlogPost from './BlogPost';
 import Map from './Map';
+import Search from '../SearchForm/chips';
+
+import './index.css';
 
 // action creators
 import {} from '../../redux/actionCreators/events';
@@ -16,15 +19,6 @@ import {} from '../../redux/actionCreators/events';
 }))
 export default class PostList extends Component {
   static propTypes = {
-    // posts: PropTypes.arrayOf(PropTypes.shape({
-    //   title: PropTypes.string.isRequired,
-    //   body: PropTypes.string.isRequired,
-    //   createdDate: PropTypes.string.isRequired,
-    //   email: PropTypes.string,
-    //   photo: PropTypes.string,
-    //   google_link: PropTypes.string,
-    //   facebook_link: PropTypes.string
-    // })).isRequired,
     userEmail: PropTypes.string,
     dispatch: PropTypes.func.isRequired
   }
@@ -37,9 +31,9 @@ export default class PostList extends Component {
   }
 
   componentDidMount() {
-    console.log(this.state)
-    window.navigator.geolocation.getCurrentPosition((position) => {
-      this.setState({ location: {
+    window.navigator.geolocation.getCurrentPosition(position => {
+      this.setState({
+        location: {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         }
@@ -66,18 +60,19 @@ export default class PostList extends Component {
     return (
       <div>
         <div className="event-container-list">
-          <ul className="blog-post-list">
+          <Search />
+          <div className="event-list">
             {
               filtered.map((post, index) =>
-                <BlogPost
-                  post={post}
-                  index={index}
-                  key={post.id}
-                  userEmail={this.props.userEmail}
-                  />
+              <BlogPost
+                post={post}
+                index={index}
+                key={post.id}
+                userEmail={this.props.userEmail}
+                />
               )
             }
-          </ul>
+          </div>
         </div>
         <div className="event-map-list">
           <Map markers={filtered} center={this.state.location} />
