@@ -2,7 +2,9 @@
 // if this file is missing. dotenv will never modify any environment variables
 // that have already been set.
 // https://github.com/motdotla/dotenv
-require('dotenv').config({ silent: true });
+if(process.env.NODE_ENV !== 'production') {
+  require('dotenv').config({ silent: true });
+}
 
 // default NODE_ENV to 'development'
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
