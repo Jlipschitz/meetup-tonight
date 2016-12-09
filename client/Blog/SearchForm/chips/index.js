@@ -35,7 +35,7 @@ export default class Search extends Component {
   inputKeyEvents(e) {
     if (e.key === 'Enter') { // Enter pressed
       if (e.target.value.trim()) { // test if input is empty
-        const updatedSearch = this.state.searchTags.concat(e.target.value.trim());
+        const updatedSearch = this.state.searchTags.concat(e.target.value.trim().toLowerCase());
         // this.search(updatedSearch);
         this.change(updatedSearch);
         this.setState({ // add tag
@@ -59,7 +59,7 @@ export default class Search extends Component {
   searchOnChange(e) {
     if (e.target.value.trim().length > 2 || e.key === 'Backspace') {
       // this.debouncedSearch(this.state.searchTags.concat(e.target.value.trim()));
-      this.change(this.state.searchTags.concat(e.target.value.trim()));
+      this.change(this.state.searchTags.concat(e.target.value.trim().toLowerCase()));
     }
   }
   render() {
