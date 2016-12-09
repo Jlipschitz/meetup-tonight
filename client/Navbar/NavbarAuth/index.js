@@ -55,7 +55,7 @@ export default class NavAuth extends Component {
 
     return (
       <li className="navbar-auth">
-        {
+        {/* {
           loggedIn
           &&
           <div className="nav-button">
@@ -66,7 +66,7 @@ export default class NavAuth extends Component {
               PROFILE
             </Link>
           </div>
-        }
+        } */}
         <div
           className={`nav user-photo ${get(user, 'meetup.photo') && 'show'}`}
           style={get(user, 'meetup.photo') && {backgroundImage: `url(${user.meetup.photo})`}}

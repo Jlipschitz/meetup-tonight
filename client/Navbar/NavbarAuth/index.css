@@ -18,10 +18,10 @@
 }
 
 .fa {
-    transition: font-size 0.3s ease-in-out;
-    display: inline-block;
-    width: 14px;
-    text-align: center;
+  transition: font-size 0.3s ease-in-out;
+  display: inline-block;
+  width: 14px;
+  text-align: center;
 }
 
 .glyphicon {
@@ -65,8 +65,7 @@
   color: #332f2b;
 }
 
-.local-auth-button:hover,
-.log-out-button:hover {
+.nav-button:hover {
   color: #fff;
 }
 
@@ -86,10 +85,7 @@
   text-decoration: none !important;
 }
 
-.o-auth-btn,
-.local-auth-button,
-.profile-view-toggle,
-.log-out-button {
+.nav-button {
   transition: color .2s;
 }
 

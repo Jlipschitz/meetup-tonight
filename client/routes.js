@@ -21,10 +21,10 @@ export default store => (
     />
     { /* Routes requiring login */ }
     <Route onEnter={authedRoute(store)}>
-      <Route
+      {/* <Route
         path='profile'
         component={Profile}
-      />
+      /> */}
     </Route>
 
     { /* Catch all route */ }

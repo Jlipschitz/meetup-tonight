@@ -25,7 +25,7 @@ export default class Navbar extends Component {
         <li className="navbar-meetup-center">
           <li className="profile-view-toggle">
             <Link
-              className="profile-view-toggle-link"
+              className="nav-button profile-view-toggle-link"
               to="about"
             >
               ABOUT
@@ -33,7 +33,7 @@ export default class Navbar extends Component {
           </li>
           <li className="profile-view-toggle">
             <Link
-              className="profile-view-toggle-link"
+              className="nav-button profile-view-toggle-link"
               to=""
             >
               DASHBOARD
