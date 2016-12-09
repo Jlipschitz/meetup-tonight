@@ -62,16 +62,18 @@ export default class PostList extends Component {
         <div className="event-container-list">
           <Search />
           <div className="event-list">
-            {
-              filtered.map((post, index) =>
-              <BlogPost
-                post={post}
-                index={index}
-                key={post.id}
-                userEmail={this.props.userEmail}
-                />
-              )
-            }
+            <div className="event-list-really">
+              {
+                filtered.map((post, index) =>
+                <BlogPost
+                  post={post}
+                  index={index}
+                  key={post.id}
+                  userEmail={this.props.userEmail}
+                  />
+                )
+              }
+            </div>
           </div>
         </div>
         <div className="event-map-list">
