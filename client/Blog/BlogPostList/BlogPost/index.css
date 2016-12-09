@@ -1,0 +1,18 @@
+.blog-post {
+  padding-bottom: 10px;
+  position: relative;
+
+  & + .blog-post {
+    padding-top: 10px;
+
+    &::before {
+      content:'';
+      display: block;
+      width: 50%;
+      left: 25%;
+      position: absolute;
+      top: -.5px;
+      border-top: 1px solid #ddd;
+    }
+  }
+}

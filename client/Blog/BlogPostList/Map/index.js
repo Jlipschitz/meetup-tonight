@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { GoogleMapLoader, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
-import moment from 'moment';
+import MeetupInfo from '../MeetupInfo';
 
 // taken from: https://developers.google.com/maps/documentation/javascript/
 const nightStylesObj = [
@@ -118,16 +118,16 @@ export default class Map extends Component {
           <div style={{
             position: 'absolute',
             top: 0,
-            left: '-25vw',
+            left: '-35vw',
             zIndex: 0,
             height: '100vh',
-            width: '125vw'
+            width: '135vw'
           }} />
         }
         googleMapElement={
           <GoogleMap
             onClick={this.onMapClicked}
-            defaultZoom={11}
+            defaultZoom={12}
             center={this.props.center}
             options={{
               styles: nightStylesObj,
@@ -155,25 +155,7 @@ export default class Map extends Component {
                 marker={activeMarkerData}
                 onCloseclick={this.onInfoCloseClick}
               >
-                <div>
-                  <a href={activeMarkerData.link}>
-                    <h4>{activeMarkerData.name}</h4>
-                  </a>
-                    {
-                      activeMarkerData.venue && activeMarkerData.venue.name &&
-                      <p>{activeMarkerData.venue.name}</p>
-                  }
-                      <p>
-                        {activeMarkerData.status}
-                        {activeMarkerData.fee && `$${activeMarkerData.fee.amount}`}
-                      </p>
-                    <p>{activeMarkerData.venue.address_1}</p>
-                      <p>{activeMarkerData.venue.city},&nbsp;
-                         {activeMarkerData.venue.state}
-                         {activeMarkerData.venue.zip}
-                      </p>
-                  <p>{moment(activeMarkerData.time).format('MMMM Do YYYY, h:mm a')}</p>
-                </div>
+                <MeetupInfo markerData={activeMarkerData} />
               </InfoWindow>
             }
           </GoogleMap>

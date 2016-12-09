@@ -23,22 +23,22 @@ export default class Navbar extends Component {
           </Link>
         </li>
         <li className="navbar-meetup-center">
-          <li className="profile-view-toggle">
+          <div className="profile-view-toggle">
             <Link
               className="nav-button profile-view-toggle-link"
               to="about"
             >
               ABOUT
             </Link>
-          </li>
-          <li className="profile-view-toggle">
+          </div>
+          <div className="profile-view-toggle">
             <Link
               className="nav-button profile-view-toggle-link"
               to=""
             >
               DASHBOARD
             </Link>
-          </li>
+          </div>
         </li>
         <NavbarAuth className="navbar-meetup-right" />
       </nav>
