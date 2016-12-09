@@ -3,7 +3,7 @@
   height: 42px;
   width: 100%;
   padding: 7px 0;
-  margin-bottom: 33px;
+  margin-bottom: 28px;
   overflow: scroll;
   .search-icon {
     position: absolute;
@@ -13,7 +13,7 @@
   .search-input-container {
     position: absolute;
     box-sizing: content-box;
-    padding-bottom: 30px;
+    padding-bottom: 25px;
     /*$left-margin: 41px;*/
     height: 23px;
     width: 100%;

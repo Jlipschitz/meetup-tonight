@@ -32,7 +32,7 @@ export default class Map extends Component {
     return (
       <GoogleMapLoader
         containerElement={
-          <div style={{ height: '400px', width: '400px' }} />
+          <div style={{ height: '100%', width: '100%' }} />
         }
         googleMapElement={
           <GoogleMap

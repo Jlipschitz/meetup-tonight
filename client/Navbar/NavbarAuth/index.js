@@ -58,20 +58,20 @@ export default class NavAuth extends Component {
         {
           loggedIn
           &&
-          <li className="nav-button">
+          <div className="nav-button">
             <Link
               className="profile-view-toggle"
               to="profile"
             >
               PROFILE
             </Link>
-          </li>
+          </div>
         }
-        <li
+        <div
           className={`nav user-photo ${get(user, 'meetup.photo') && 'show'}`}
           style={get(user, 'meetup.photo') && {backgroundImage: `url(${user.meetup.photo})`}}
         />
-        <li
+        <div
           className="nav-button"
           onKeyDown={this.loginOnEnterKey}
         >
@@ -110,7 +110,7 @@ export default class NavAuth extends Component {
               LOG OUT
             </a>
           }
-        </li>
+        </div>
         {
           authErrorMessage
           &&
