@@ -2,6 +2,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+// action creators
+import { initializationRequests } from '../redux/actionCreators/initialize';
+
 // components
 import MeetupInfo from './MeetupInfo';
 import Map from './Map';
@@ -35,6 +38,9 @@ export default class Dashboard extends Component {
           lng: position.coords.longitude
         }
       })
+
+      // quick and dirty way to update meetup list to user's location
+      this.props.dispatch(initializationRequests());
     });
   }
 
