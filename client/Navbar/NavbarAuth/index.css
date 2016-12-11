@@ -82,6 +82,7 @@
 
 .o-auth-btn {
   color: #FF1177;
+  transition: color .2s;
   text-decoration: none !important;
 }
 
@@ -90,7 +91,7 @@
 }
 
 .o-auth-btn:hover {
-  color: rgb(110, 48, 212);
+  color: #fff;
 }
 
 .user-photo {
