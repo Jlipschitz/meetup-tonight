@@ -3,21 +3,18 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 // components
-import BlogPost from './BlogPost';
+import MeetupInfo from './MeetupInfo';
 import Map from './Map';
-import Search from '../SearchForm/chips';
+import Search from './Search';
 
 import './index.css';
 
-// action creators
-import {} from '../../redux/actionCreators/events';
-
 @connect(store => ({
   searchInput: store.search,
-  posts: store.events,
+  events: store.events,
   userEmail: store.user && store.user.email
 }))
-export default class PostList extends Component {
+export default class Dashboard extends Component {
   static propTypes = {
     userEmail: PropTypes.string,
     dispatch: PropTypes.func.isRequired
@@ -45,17 +42,14 @@ export default class PostList extends Component {
     var filtered;
 
     if(this.props.searchInput[0]) {
-      filtered = this.props.posts && this.props.posts.filter( (item) =>
+      filtered = this.props.events && this.props.events.filter( (item) =>
         this.props.searchInput.some( term =>
           item.description ? item.description.includes(term) : item.name.includes(term)
         )
       );
     } else {
-      filtered = this.props.posts;
+      filtered = this.props.events;
     }
-
-    // item.description && item.description.includes(this.props.searchInput) || item.name.includes(this.props.searchInput)
-    // );
 
     return (
       <div>
@@ -64,21 +58,18 @@ export default class PostList extends Component {
           <div className="event-list">
             <div className="event-list-really">
               {
-                filtered.map((post, index) =>
-                <BlogPost
-                  post={post}
-                  index={index}
-                  key={post.id}
-                  userEmail={this.props.userEmail}
+                filtered.map(event =>
+                  <MeetupInfo
+                    className="event-list-item"
+                    markerData={event}
+                    key={event.id}
                   />
                 )
               }
             </div>
           </div>
         </div>
-        <div className="event-map-list">
-          <Map markers={filtered} center={this.state.location} />
-        </div>
+        <Map markers={filtered} center={this.state.location} />
       </div>
     );
   }

@@ -1,0 +1,36 @@
+.meetup-info {
+  position: relative;
+  display: flex;
+}
+
+.meetup-image {
+  /* flow */
+  display: inline-block;
+  vertical-align: top; /* aligns meetup content with the top of this element */
+  min-height: 100px;
+  width: 100px;
+  flex-grow: 1;
+
+  /* view */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.meetup-content {
+  display: inline-block;
+  width: calc(100% - 110px);
+  margin-left: 10px;
+
+  .meetup-link {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+  }
+
+  .meetup-info-item {
+    margin-bottom: 0;
+  }
+}

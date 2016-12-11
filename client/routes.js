@@ -6,7 +6,7 @@ import authedRoute from './lib/authedRoute';
 
 // actual app components
 import App from './App';
-import Blog from './Blog';
+import Dashboard from './Dashboard';
 // import Profile from './Profile';
 import About from './About';
 import NotFound from './NotFound';
@@ -14,7 +14,7 @@ import NotFound from './NotFound';
 export default store => (
   <Route path='/' component={App}>
     { /* Unauthed routes */ }
-    <IndexRoute component={Blog}/>
+    <IndexRoute component={Dashboard}/>
     <Route
       path='about'
       component={About}

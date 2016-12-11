@@ -6,7 +6,7 @@ import './index.css';
 // action creators
 import {
   editSearchInput
-} from '../../../redux/actionCreators/events';
+} from '../../redux/actionCreators/events';
 
 
 @connect(store => ({
@@ -14,18 +14,10 @@ import {
 }))
 
 export default class Search extends Component {
-
   state = {
     searchTags:[]
   }
-  //
-  // editSearchInput = event => this.props.dispatch(
-  //   editSearchInput({
-  //     searchInput: event.target.value
-  //   })
-  // );
-  //
-  // onSearchChange = value => console.log(value)
+
   change = value => this.props.dispatch(
     editSearchInput({
       searchInput: value
@@ -36,7 +28,6 @@ export default class Search extends Component {
     if (e.key === 'Enter') { // Enter pressed
       if (e.target.value.trim()) { // test if input is empty
         const updatedSearch = this.state.searchTags.concat(e.target.value.trim().toLowerCase());
-        // this.search(updatedSearch);
         this.change(updatedSearch);
         this.setState({ // add tag
           searchTags: updatedSearch// remove whitespace at the beginning and end of string
@@ -50,7 +41,6 @@ export default class Search extends Component {
   }
   removeTag(removalIndex) {
     const updatedSearch = this.state.searchTags.filter((val, index) => index !== removalIndex);
-    // this.debouncedSearch(updatedSearch);
     this.change(updatedSearch);
     this.setState({
       searchTags: updatedSearch
@@ -58,7 +48,6 @@ export default class Search extends Component {
   }
   searchOnChange(e) {
     if (e.target.value.trim().length > 2 || e.key === 'Backspace') {
-      // this.debouncedSearch(this.state.searchTags.concat(e.target.value.trim()));
       this.change(this.state.searchTags.concat(e.target.value.trim().toLowerCase()));
     }
   }

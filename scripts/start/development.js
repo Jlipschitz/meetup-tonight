@@ -8,6 +8,7 @@ import checkRequiredFiles from 'react-dev-utils/checkRequiredFiles';
 import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages';
 import openBrowser from 'react-dev-utils/openBrowser';
 import prompt from 'react-dev-utils/prompt';
+import cors from 'cors';
 import proxyHandling from './util/proxyHandling';
 import config from '../../config/webpack.config.dev';
 import paths from '../../config/paths';

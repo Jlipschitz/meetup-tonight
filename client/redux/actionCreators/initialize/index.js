@@ -2,11 +2,11 @@ import * as actionTypes from '../../actionTypes';
 import request from '../../../utils/request';
 
 
-export function initializeUserAndPosts({user, posts}) {
+export function initializeUserAndEvents({ user, events }) {
   return {
     type: actionTypes.INITIALIZE_APP,
     user,
-    posts
+    events
   };
 }
 
@@ -17,10 +17,9 @@ export function initializationRequests() {
       request.get('/auth/session'),
       request.get('/api/events/search')
     ])
-    .then(([{ data: user }, { data: posts }]) =>
-      dispatch(initializeUserAndPosts({
+    .then(([{ data: user }, { data: events }]) =>
+      dispatch(initializeUserAndEvents({
         user: user || null,
-        // posts: posts.slice(0,4)
-        posts: posts
+        events
       })));
 }

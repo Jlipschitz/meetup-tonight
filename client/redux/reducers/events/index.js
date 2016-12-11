@@ -6,7 +6,7 @@ const initialState = [];
 export default function postsReducer(state = initialState, action) {
   switch (action.type) {
     case actionTypes.INITIALIZE_APP :
-      return action.posts
+      return action.events
 
     default:
       return state;
