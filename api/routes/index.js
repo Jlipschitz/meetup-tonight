@@ -40,7 +40,7 @@ export default router => {
             .then(pageRes => {
               if (typeof pageRes.data === 'string') {
                 const $ = cheerio.load(pageRes.data);
-                const imageUrl = $('[property="og:image"]').attr('content') || $('.doc-box img.photo').attr('src');
+                const imageUrl = $('.doc-box img.photo').attr('src') || $('[property="og:image"]').attr('content');
                 new GroupImage({ _id: groupId, imageUrl }).save(); // save to DB for future inits, but don't wait for this to complete
                 imageUrlMap[groupId] = imageUrl; // add to server's in-memory cache
                 event.image = imageUrl; // add to event object for current client request
