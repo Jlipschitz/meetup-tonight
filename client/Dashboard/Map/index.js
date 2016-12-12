@@ -151,6 +151,10 @@ export default class Map extends Component {
               <InfoWindow
                 marker={activeMarkerData}
                 onCloseclick={this.onInfoCloseClick}
+                position={{
+                  lat:activeMarkerData.group.lat,
+                  lng: activeMarkerData.group.lon 
+                }}
               >
                 <MeetupInfo markerData={activeMarkerData} />
               </InfoWindow>
