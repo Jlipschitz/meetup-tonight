@@ -146,7 +146,7 @@ export default class Map extends Component {
               ))
             }
             {
-              activeMarkerData
+              (console.log(activeMarkerData) || activeMarkerData)
               &&
               <InfoWindow
                 marker={activeMarkerData}
@@ -154,9 +154,6 @@ export default class Map extends Component {
                 position={{
                   lat: !activeMarkerData.venue ? activeMarkerData.group.lat : activeMarkerData.venue.lat,
                   lng: !activeMarkerData.venue ? activeMarkerData.group.lon : activeMarkerData.venue.lon
-                }}
-                options={{
-                  pixelOffset: 40
                 }}
               >
                 <MeetupInfo markerData={activeMarkerData} />
