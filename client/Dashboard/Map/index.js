@@ -152,8 +152,11 @@ export default class Map extends Component {
                 marker={activeMarkerData}
                 onCloseclick={this.onInfoCloseClick}
                 position={{
-                  lat:activeMarkerData.group.lat,
-                  lng: activeMarkerData.group.lon 
+                  lat:activeMarkerData.lat,
+                  lng: activeMarkerData.lon
+                }}
+                options={{
+                  pixelOffset: 40
                 }}
               >
                 <MeetupInfo markerData={activeMarkerData} />
