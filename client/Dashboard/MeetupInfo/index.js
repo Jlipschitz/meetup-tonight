@@ -10,10 +10,10 @@ export default class MeetupInfo extends Component {
   }
 
   render() {
-    const { className, markerData } = this.props;
+    const { className, markerData, updateOnListHover } = this.props;
     return (
       <div className={`${className || ''} meetup-info`}
-            onMouseEnter={e => this.props.updateOnListHover && this.props.updateOnListHover(markerData)}
+            onMouseEnter={e => updateOnListHover && updateOnListHover(markerData.id)}
             ref="element"
       >
         <a
