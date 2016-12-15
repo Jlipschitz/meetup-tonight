@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { GoogleMapLoader, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 import MeetupInfo from '../MeetupInfo';
+import { connect } from 'react-redux';
+
+import { activeMeetupChange } from '../../redux/actionCreators/events';
 
 // taken from: https://developers.google.com/maps/documentation/javascript/
 const nightStylesObj = [
@@ -81,7 +84,9 @@ const nightStylesObj = [
   },
 ];
 
-
+@connect(store => ({
+  hover: store.hover
+}))
 export default class Map extends Component {
   state = {
     activeMarkerId: null,
@@ -107,8 +112,9 @@ export default class Map extends Component {
     }
   }
   render() {
-    const activeMarkerData = this.state.activeMarkerId && this.props.markers.find(marker => marker.id === this.state.activeMarkerId);
-
+    const {center, dispatch, hover, markers} = this.props;
+    const activeMarkerData = this.state.activeMarkerId && markers.find(marker => marker.id === this.state.activeMarkerId);
+    
     return (
       <GoogleMapLoader
         containerElement={
@@ -125,7 +131,7 @@ export default class Map extends Component {
           <GoogleMap
             onClick={this.onMapClicked}
             defaultZoom={12}
-            center={this.props.center}
+            center={center}
             options={{
               styles: nightStylesObj,
               streetViewControl: false,
@@ -133,11 +139,14 @@ export default class Map extends Component {
             }}
             >
             {
-              this.props.markers.slice(0, 30).map((item, i) => (
+              markers.slice(0, 30).map((item, i) => (
                 <Marker
-                  onClick={markerData => this.onMarkerClick(item, markerData)}
-                  name={'Current location'}
+                  onClick={(markerData) => {
+                    return this.onMarkerClick(item, markerData), dispatch( activeMeetupChange({ eventID: item.id })
+                    )}}
+                  icon={hover && item.id === hover.listID && 'http://i.picresize.com/images/2016/12/14/7x95v.png' || ''}
                   key={i}
+                  animation={'BOUNCE'}
                   position={{
                     lat: !item.venue ? item.group.lat : item.venue.lat,
                     lng: !item.venue ? item.group.lon : item.venue.lon
@@ -146,7 +155,7 @@ export default class Map extends Component {
               ))
             }
             {
-              (console.log(activeMarkerData) || activeMarkerData)
+              activeMarkerData
               &&
               <InfoWindow
                 marker={activeMarkerData}
@@ -155,7 +164,7 @@ export default class Map extends Component {
                   lat: !activeMarkerData.venue ? activeMarkerData.group.lat : activeMarkerData.venue.lat,
                   lng: !activeMarkerData.venue ? activeMarkerData.group.lon : activeMarkerData.venue.lon
                 }}
-              >
+                >
                 <MeetupInfo markerData={activeMarkerData} />
               </InfoWindow>
             }

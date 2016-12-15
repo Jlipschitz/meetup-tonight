@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 // action creators
 import { initializationRequests } from '../redux/actionCreators/initialize';
+import { activeMeetupChange } from '../redux/actionCreators/events';
 
 // components
 import MeetupInfo from './MeetupInfo';
@@ -15,6 +16,7 @@ import './index.css';
 @connect(store => ({
   searchInput: store.search,
   events: store.events,
+  hover: store.hover,
   userEmail: store.user && store.user.email
 }))
 export default class Dashboard extends Component {
@@ -29,6 +31,19 @@ export default class Dashboard extends Component {
       lng: -73.98
     }
   }
+
+  updateOnListHover = (markerIdentifier) => {
+      this.props.dispatch(
+        activeMeetupChange({
+          listID: markerIdentifier
+        })
+      )
+    }
+
+    scrollEvent = (el) => {
+       el.scrollIntoView();
+    }
+
 
   componentDidMount() {
     window.navigator.geolocation.getCurrentPosition(position => {
@@ -46,15 +61,16 @@ export default class Dashboard extends Component {
 
   render() {
     var filtered;
+    const { events, hover, searchInput} = this.props;
 
-    if(this.props.searchInput[0]) {
-      filtered = this.props.events && this.props.events.filter( (item) =>
-        this.props.searchInput.some( term =>
+    if(searchInput[0]) {
+      filtered = events && events.filter( (item) =>
+        searchInput.some( term =>
           item.description ? item.description.includes(term) : item.name.includes(term)
         )
       );
     } else {
-      filtered = this.props.events;
+      filtered = events;
     }
 
     return (
@@ -69,13 +85,15 @@ export default class Dashboard extends Component {
                     className="event-list-item"
                     markerData={event}
                     key={event.id}
+                    updateOnListHover={this.updateOnListHover}
+                    scrollEvent={event && hover && event.id === hover.eventID && this.scrollEvent}
                   />
                 )
               }
             </div>
           </div>
         </div>
-        <Map markers={filtered} center={this.state.location} />
+        <Map markers={filtered} center={this.state.location}/>
       </div>
     );
   }

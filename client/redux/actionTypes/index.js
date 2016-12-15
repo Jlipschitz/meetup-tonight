@@ -7,3 +7,4 @@ export const LOCAL_AUTH = 'LOCAL_AUTH';
 export const LOG_OUT = 'LOG_OUT';
 
 export const SEARCH_INPUT_CHANGE = 'SEARCH_INPUT_CHANGE';
+export const ACTIVE_MEETUP_HOVER = 'ACTIVE_MEETUP_HOVER';

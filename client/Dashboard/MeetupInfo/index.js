@@ -4,12 +4,18 @@ import { get } from 'lodash';
 
 import './index.css';
 
-
 export default class MeetupInfo extends Component {
+  componentDidUpdate() {
+    this.props.scrollEvent && this.props.scrollEvent(this.refs.element)
+  }
+
   render() {
     const { className, markerData } = this.props;
     return (
-      <div className={`${className || ''} meetup-info`}>
+      <div className={`${className || ''} meetup-info`}
+            onMouseEnter={e => this.props.updateOnListHover && this.props.updateOnListHover(markerData)}
+            ref="element"
+      >
         <a
           className="meetup-image"
           href={markerData.link}
