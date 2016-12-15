@@ -144,7 +144,7 @@ export default class Map extends Component {
                   onClick={(markerData) => {
                     return this.onMarkerClick(item, markerData), dispatch( activeMeetupChange({ eventID: item.id })
                     )}}
-                  icon={hover && item.id === hover.listID && 'http://i.picresize.com/images/2016/12/14/7x95v.png' || ''}
+                  icon={hover && item.id === hover.listID && 'https://maps.google.com/mapfiles/kml/paddle/wht-circle.png' || ''}
                   key={i}
                   animation={'BOUNCE'}
                   position={{

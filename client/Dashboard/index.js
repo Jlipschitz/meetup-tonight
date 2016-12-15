@@ -39,6 +39,14 @@ export default class Dashboard extends Component {
         })
       )
     }
+  
+  removeOnListHover = () => {
+      this.props.dispatch(
+        activeMeetupChange({
+          listID: ''
+        })
+      )
+  }
 
     scrollEvent = (el) => {
        el.scrollIntoView();
@@ -86,6 +94,7 @@ export default class Dashboard extends Component {
                     markerData={event}
                     key={event.id}
                     updateOnListHover={this.updateOnListHover}
+                    removeOnListHover={this.removeOnListHover}
                     scrollEvent={event && hover && event.id === hover.eventID && this.scrollEvent}
                   />
                 )
