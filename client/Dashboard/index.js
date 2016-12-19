@@ -49,11 +49,11 @@ export default class Dashboard extends Component {
       )
   }
 
-    scrollEvent = (el) => {
-        scrollIntoViewIfNeeded(el, false, {
-    duration: 150
-   })
-    }
+  scrollEvent = (el) => {
+    scrollIntoViewIfNeeded(el, false, {
+      duration: 150
+    })
+  }
 
 
   componentDidMount() {
@@ -107,7 +107,7 @@ export default class Dashboard extends Component {
             </div>
           </div>
         </div>
-        <Map markers={filtered} center={this.state.location}/>
+        <Map markers={filtered} google={window.google} center={this.state.location}/>
       </div>
     );
   }

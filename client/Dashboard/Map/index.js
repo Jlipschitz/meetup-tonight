@@ -112,7 +112,7 @@ export default class Map extends Component {
     }
   }
   render() {
-    const {center, dispatch, hover, markers} = this.props;
+    const {center, dispatch, hover, markers, google} = this.props;
     const activeMarkerData = this.state.activeMarkerId && markers.find(marker => marker.id === this.state.activeMarkerId);
     
     return (
@@ -124,11 +124,11 @@ export default class Map extends Component {
             left: '-35vw',
             zIndex: 0,
             height: '100vh',
-            width: '135vw'
+            width: '135vw',
           }} />
         }
         googleMapElement={
-          <GoogleMap
+          <GoogleMap 
             onClick={this.onMapClicked}
             defaultZoom={12}
             center={center}
@@ -142,15 +142,18 @@ export default class Map extends Component {
               markers.slice(0, 30).map((item, i) => (
                 <Marker
                   onClick={(markerData) => {
-                    return this.onMarkerClick(item, markerData), dispatch( activeMeetupChange({ eventID: item.id })
+                    return this.onMarkerClick(item, markerData), 
+                           dispatch( activeMeetupChange({ 
+                             eventID: item.id 
+                            })
                     )}}
                   icon={hover && item.id === hover.listID && 'https://maps.google.com/mapfiles/kml/paddle/wht-circle.png' || ''}
                   key={i}
-                  animation={'BOUNCE'}
                   position={{
                     lat: !item.venue ? item.group.lat : item.venue.lat,
                     lng: !item.venue ? item.group.lon : item.venue.lon
                   }}
+                  defaultAnimation={google.maps.Animation.DROP}
                   />
               ))
             }
@@ -164,6 +167,7 @@ export default class Map extends Component {
                   lat: !activeMarkerData.venue ? activeMarkerData.group.lat : activeMarkerData.venue.lat,
                   lng: !activeMarkerData.venue ? activeMarkerData.group.lon : activeMarkerData.venue.lon
                 }}
+                options={{pixelOffset: new google.maps.Size(0, -27)}}
                 >
                 <MeetupInfo markerData={activeMarkerData} />
               </InfoWindow>
