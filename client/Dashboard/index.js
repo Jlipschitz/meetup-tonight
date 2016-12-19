@@ -97,8 +97,7 @@ export default class Dashboard extends Component {
                     updateOnListHover={this.updateOnListHover}
                     removeOnListHover={this.removeOnListHover}
                     scrollEvent={event && hover && event.id === hover.eventID && this.scrollEvent}
-                  />
-                  <hr />
+                  />  
                   </div>
                 )
               }

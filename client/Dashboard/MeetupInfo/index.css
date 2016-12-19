@@ -1,6 +1,7 @@
 .meetup-info {
   position: relative;
   display: flex;
+  padding-top: 1px;
 }
 
 .meetup-image {
@@ -23,6 +24,7 @@
   width: calc(100% - 110px);
   margin-left: 11px;
   padding-top: 2.5px;
+  border-bottom: 1px solid linen;
 
   .meetup-link {
     display: inline-block;
@@ -30,6 +32,7 @@
     font-weight: 500;
     line-height: 1.1;
     color: inherit;
+    padding-bottom: 5px;
   }
 
   .meetup-info-item {
