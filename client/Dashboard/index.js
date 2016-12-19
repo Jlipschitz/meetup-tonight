@@ -1,5 +1,6 @@
 // Component here uses ES6 destructuring syntax in import, what is means is "retrieve the property 'Component' off of the object exported from the 'react'"
 import React, { Component, PropTypes } from 'react';
+import scrollIntoViewIfNeeded from 'scroll-into-view-if-needed'
 import { connect } from 'react-redux';
 
 // action creators
@@ -49,7 +50,9 @@ export default class Dashboard extends Component {
   }
 
     scrollEvent = (el) => {
-       el.scrollIntoView();
+        scrollIntoViewIfNeeded(el, false, {
+    duration: 150
+   })
     }
 
 
