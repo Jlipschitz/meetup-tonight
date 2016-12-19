@@ -36,7 +36,9 @@
       border-radius: 4px;
       /*// font*/
       font-family: Lato;
-      color: #888;
+      color: #FF1177;
+      font-style: italic;
+      font-weight:300;
       /*// flexbox*/
       flex-grow: 0;
       flex-basis: content; // size to fit content

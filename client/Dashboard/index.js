@@ -39,7 +39,7 @@ export default class Dashboard extends Component {
         })
       )
     }
-  
+
   removeOnListHover = () => {
       this.props.dispatch(
         activeMeetupChange({
@@ -89,6 +89,7 @@ export default class Dashboard extends Component {
             <div className="event-list-really">
               {
                 filtered.map(event =>
+                  <div>
                   <MeetupInfo
                     className="event-list-item"
                     markerData={event}
@@ -97,6 +98,8 @@ export default class Dashboard extends Component {
                     removeOnListHover={this.removeOnListHover}
                     scrollEvent={event && hover && event.id === hover.eventID && this.scrollEvent}
                   />
+                  <hr />
+                  </div>
                 )
               }
             </div>

@@ -30,20 +30,20 @@ export default class MeetupInfo extends Component {
             {markerData.name}
           </a>
           <p className="meetup-info-item">
-            <i>Price:</i>{markerData.fee && ` $${markerData.fee.amount}` || ` Free!`}
+            <span className="meetup-info-item-tags"><i>Price:</i></span>{markerData.fee && ` $${markerData.fee.amount}` || ` Free!`}
           </p>
           {
             get(markerData, 'venue.name')
             &&
             <p className="meetup-info-item">
-              <i>Hosted by:</i>{` ${markerData.venue.name}`}
+              <span className="meetup-info-item-tags"><i>Hosted by:</i></span>{` ${markerData.venue.name}`}
             </p>
           }
           <p className="meetup-info-item">
             {
               markerData.venue
               &&
-              <i>Located at:</i>
+              <span className="meetup-info-item-tags"><i>Located at:</i></span>
             }
             {get(markerData, 'venue.address_1') && ` ${markerData.venue.address_1},`}
             {
@@ -53,7 +53,7 @@ export default class MeetupInfo extends Component {
             }
           </p>
           <p className="meetup-info-item">
-            <i>Happening:</i>{` ${moment(markerData.time).format('MMMM Do YYYY, h:mm a')}`}
+            <span className="meetup-info-item-tags"><i>Happening:</i></span>{` ${moment(markerData.time).format('MMMM Do YYYY, h:mm a')}`}
           </p>
         </div>
       </div>

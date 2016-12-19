@@ -47,4 +47,17 @@
       background-image: linear-gradient(to left, rgba(0,0,0,.07) 0%, rgba(0,0,0,.05) 50%, rgba(0,0,0,.015) 97.5%, transparent 100%);
     }
   }
+
+  .meetup-info-item {
+    color:black;
+  }
+
+  .meetup-link {
+    color: #FF1177;
+    margin-bottom: 8px;
+  }
+
+  .meetup-info-item-tags {
+    color: teal;
+  }
 }
